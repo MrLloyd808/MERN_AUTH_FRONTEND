@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound'
 import axios from './utils/axios'
 import { useAuthStore } from './utils/Zustand'
 import Home from './pages/Home'
-import AuthHelper from './helpers/authHelper'
+import AuthHelper from './helpers/AuthHelper'
 
 function App() {
   const logOut = useAuthStore((state) => state.logOut)
