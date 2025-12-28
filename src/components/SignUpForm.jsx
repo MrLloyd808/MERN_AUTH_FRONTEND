@@ -16,7 +16,7 @@ function SignUpForm() {
         const resData = await axios.post("/auth/register", data)
            
         console.log(resData)
-        if (resData.status === 200) return moveTo("/auth/login")
+        if (resData.status === 201) return moveTo("/auth/login")
         
         })}
     
