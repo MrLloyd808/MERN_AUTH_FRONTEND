@@ -9,8 +9,7 @@ export const useAuthStore = create(persist((set) => ({
         User: user,
         isLoggedIn: true
     }),
-    logOut: async () => {
-        await axios.get("/api/logout")
+    logOut: () => {
         set({
         User: null,
         isLoggedIn: false

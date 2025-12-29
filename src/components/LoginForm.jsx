@@ -3,20 +3,31 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from '../utils/axios'
 import { useAuthStore } from '../utils/Zustand'
+import { useEffect } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+
 
 function LoginForm() {
   const {register, handleSubmit} = useForm()
   const navigate = useNavigate()
-  const setUser = useAuthStore((state) => state.setUser)
-  const logOut = useAuthStore((state) => state.logOut)
+  const incorrect = () => toast("incorrect password", {
+    type: "error",
+    theme: "dark",
+    position: "top-right"
+  })
+
   return (
+    <>
     <form 
     onSubmit={handleSubmit(async (data) => {
       
       try {
+        
          const res = await axios.post("/auth/login", data)
-         if (res.status !== 200) return 
-         navigate("/home")
+         console.log(res.status)
+         if (res.status === 200) return navigate("/home")
+         if (res.status === 400) return incorrect
+         
       } catch (err) {
         console.error(err.message)
       }
@@ -40,7 +51,7 @@ function LoginForm() {
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
     </g>
   </svg>
-  <input type="email" autoFocus placeholder="mail@email.com" required {...register("email")}/>
+  <input type="email" autoFocus autoComplete='true' placeholder="mail@email.com" required {...register("email")}/>
 </label>
 <div className="validator-hint hidden">Enter valid email address</div>
 {/* second form input */}
@@ -51,6 +62,7 @@ function LoginForm() {
       strokeLinejoin="round"
       strokeLinecap="round"
       strokeWidth="2.5"
+    
       fill="none"
       stroke="currentColor"
     >
@@ -64,7 +76,7 @@ function LoginForm() {
     type="password"
     {...register("password")}
     required
-    autoComplete='false'
+    autoComplete='true'
     placeholder="Password"
     minLength="8"
     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
@@ -82,7 +94,9 @@ function LoginForm() {
 <div className='flex w-full justify-between px-3'>
     <p>Dont have an account?</p> <Link to={"/auth/register"} className='underline font-semibold'>Sign Up</Link>
 </div>
+
     </form>
+    <ToastContainer /></>
   )
 }
 
