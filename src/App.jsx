@@ -18,6 +18,7 @@ function App() {
    axios("/api/home")
    .then((res) => {
     setUser(res.data?.user)
+    console.log(res)
   })
    .catch(() => logOut())
   }, [])

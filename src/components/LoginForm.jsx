@@ -22,12 +22,10 @@ function LoginForm() {
     onSubmit={handleSubmit(async (data) => {
       
       try {
-        
          const res = await axios.post("/auth/login", data)
          console.log(res.status)
          if (res.status === 200) return navigate("/home")
-         if (res.status === 400) return incorrect
-         
+         if (res.status === 400) return () => incorrect()
       } catch (err) {
         console.error(err.message)
       }
