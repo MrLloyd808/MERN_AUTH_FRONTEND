@@ -8,14 +8,14 @@ function LoginForm() {
   const {register, handleSubmit} = useForm()
   const navigate = useNavigate()
   const setUser = useAuthStore((state) => state.setUser)
+  const logOut = useAuthStore((state) => state.logOut)
   return (
     <form 
     onSubmit={handleSubmit(async (data) => {
       
       try {
-         const resData = await axios.post("/auth/login", data)
-         console.log(resData)
-         setUser(resData.data)
+         const res = await axios.post("/auth/login", data)
+         if (res.status !== 200) return 
          navigate("/home")
       } catch (err) {
         console.error(err.message)

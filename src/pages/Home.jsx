@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuthStore } from '../utils/Zustand'
 import { HomeNavbar } from '../components/HomeNavbar'
+import axios from '../utils/axios'
 
 
 function Home() {
     const user = useAuthStore((state) => state.User)
+    const setUser = useAuthStore((state) => state.setUser)
+    useEffect(() => {
+       axios("/api/home")
+       .then((res) => {
+        setUser(res.data?.user)
+      })
+       .catch(() => logOut())
+      }, [])
   return (
     <main>
         <HomeNavbar />

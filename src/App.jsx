@@ -19,11 +19,8 @@ function App() {
    .then((res) => {
     setUser(res.data?.user)
   })
-  .then(() => console.log(User))
    .catch(() => logOut())
   }, [])
-  
-console.info(User)
 
   return (
     <Routes>
