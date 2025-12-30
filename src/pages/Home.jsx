@@ -8,11 +8,12 @@ function Home() {
     const user = useAuthStore((state) => state.User)
     const setUser = useAuthStore((state) => state.setUser)
     useEffect(() => {
-       axios("/api/home")
-       .then((res) => {
-        setUser(res.data?.user)
-      })
-       .catch(() => logOut())
+        axios("/api/home")
+       .then((res) => setUser(res.data?.user))
+       .then(console.log("i was fired"))
+       .catch(() => {
+        console("i failed")
+        logOut})
       }, [])
   return (
     <main>

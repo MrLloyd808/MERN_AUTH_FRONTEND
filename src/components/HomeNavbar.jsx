@@ -1,6 +1,7 @@
 import { Leaf, LogOut, Menu } from 'lucide-react'
 import { useAuthStore } from '../utils/Zustand'
 import { Link } from 'react-router-dom'
+import axios from '../utils/axios'
 
 export const HomeNavbar = () => {
   const logOut = useAuthStore((state) => state.logOut)
@@ -10,7 +11,10 @@ export const HomeNavbar = () => {
     <Link to={"/"} className='flex'> 
     <h2 className='font-semibold cursor-pointer flex gap-1'><Leaf />BLOGGR</h2>
     </Link>
-    <button className='btn btn-success btn-sm' onClick={() => logOut()}>Logout</button>
+    <button className='btn btn-success btn-sm' onClick={async () => {
+      await axios.post("/auth/logout")
+      logOut()
+      }}>Logout</button>
     
     </header>
   )

@@ -3,29 +3,23 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from '../utils/axios'
 import { useAuthStore } from '../utils/Zustand'
-import { useEffect } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
-
 
 function LoginForm() {
   const {register, handleSubmit} = useForm()
+  const setUser = useAuthStore((s) => s.setUser)
   const navigate = useNavigate()
-  const incorrect = () => toast("incorrect password", {
-    type: "error",
-    theme: "dark",
-    position: "top-right"
-  })
-
+  
   return (
     <>
     <form 
     onSubmit={handleSubmit(async (data) => {
       
       try {
-         const res = await axios.post("/auth/login", data)
-         console.log(res.status)
-         if (res.status === 200) return navigate("/home")
-         if (res.status === 400) return () => incorrect()
+         await axios.post("/auth/login", data)
+         const newRes = await axios("/api/home")
+         setUser(newRes.data?.user)
+        if (newRes.status === 200) return navigate("/home")
+         
       } catch (err) {
         console.error(err.message)
       }
