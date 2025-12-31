@@ -17,3 +17,10 @@ export const useAuthStore = create(persist((set) => ({
 }), {
     name: "auth-store"
 }))
+
+export const isLoading = create((set) => ({
+    loading: true,
+    setIsLoading: (state) => set({
+       loading: state
+    })
+}))

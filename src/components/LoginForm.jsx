@@ -88,7 +88,7 @@ function LoginForm() {
 </div>
 
     </form>
-    <ToastContainer /></>
+</>
   )
 }
 
