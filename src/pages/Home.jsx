@@ -49,13 +49,13 @@ function Home() {
         
         <section className='flex flex-col gap-2'>
         <PostForm />
-          {posts.map(post => <div className='p-2'>
+          {posts.map(post => <div className='p-2 shadow-lg'>
           <div className=''>
             {post.author?.firstname + " " + post.author?.lastname}
           </div>
 
           <div className='px-1'>
-            <h3>{post.title}</h3>
+            <h3 className='capitalize font-semibold pt-1'>{post.title}</h3>
           <p>{post.body}</p>
           </div>
           

@@ -1,4 +1,4 @@
-import { Leaf } from 'lucide-react'
+import { Leaf, X } from 'lucide-react'
 import { usePostFormStore } from '../utils/Zustand'
 import { useForm } from 'react-hook-form'
 import axios from "../utils/axios"
@@ -24,9 +24,15 @@ function PostForm() {
         }
         })}
     
-    className={`flex flex-col w-[80%] p-2 gap-3 transition-all max-w-100 shadow-lg bg-neutral rounded absolute z-566 left-[50%]  translate-x-[-50%] translate-y-[-50%] ${formState ? "top-[40%]" : "top-[-200%]" }`}>
-        <h3 className='font-semibold flex gap-1 justify-center items-center p-2'> <Leaf />Add Post</h3>
+    className={`flex flex-col w-[80%] p-2 gap-3 transition-all max-w-100 shadow-lg bg-neutral rounded absolute z-566 left-[50%]  translate-x-[-50%] translate-y-[-50%] ${formState ? "top-[35%]" : "top-[-80%]" }`}>
+    <div className='flex items-center justify-between px-3'>
+       
+        <h3 className='font-semibold'> Add Post</h3>
         
+        <X onClick={() => setFormState(false)} className='cursor-pointer'/>
+        
+    </div>
+    
  
   <input type="text" className="input w-full outline-0" {...register("title")}placeholder="Post title" required/>
   <textarea className="textarea w-full outline-0" {...register("body")} placeholder="Body" required></textarea>
