@@ -20,12 +20,12 @@ function App() {
   useEffect(() => {
    
    axios("/api/home")
-   .then((res) => {
-    setUser(res.data?.user)
-    console.log(res)
-  })
+  .then((res) => setUser(res.data?.user))
   .then(setIsLoading(false))
-  .catch(() => logOut())
+  .catch(() => {
+    console.log("logged out")
+    logOut()
+  })
   }, [])
 
   if (loading) return <Spinner/>
@@ -35,7 +35,6 @@ function App() {
     <Route index element={<Hero />} />
       <Route path={"/auth/login"} element={<Login />} />
       <Route path={"/auth/register"} element={<Register />} />
-      <Route path='/loader' element={<Spinner />} />
       <Route path='/home' element={
         <AuthHelper>
           <Home />

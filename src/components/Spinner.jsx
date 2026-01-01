@@ -5,7 +5,7 @@ function Spinner() {
   return (
     <section className='h-screen flex items-center justify-center'>
        <HashLoader 
-        color='green'
+        color='#C59F61'
        />
     </section>
   )   

@@ -15,10 +15,10 @@ Thoughts that Stay</h1>
 <p className='text-center px-4 pt-4 my-5'>A personal collection of essays, musings, and explorations on life, creativity, and the art of living with intention. Welcome to my corner of the internet.</p>
         <div className='flex gap-2 w-full justify-center'>
             
-            <Link to={"/home"}>
+            <Link to={"/auth/register"}>
             <button className='btn btn-error'>Get Started</button>
             </Link>
-            <Link to={"/auth/login"}>
+            <Link to={"/home"}>
             <button className='btn btn-success'>Log In</button>
             </Link>
             

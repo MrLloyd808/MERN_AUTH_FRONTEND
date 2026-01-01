@@ -9,7 +9,7 @@ function Header() {
     <Link to={"/"} className='flex'> 
     <h2 className='font-semibold cursor-pointer flex gap-1'><Leaf />BLOGGR</h2></Link>
    
-    <Link to={"/auth/login"}>
+    <Link to={"/home"}>
     <button className='btn btn-success btn-sm'>Log in</button>
     </Link>
     
